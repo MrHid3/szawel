@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <video autoplay muted loop id="myVideo">
+        <source src="imges/szawel.mp4" type="video/mp4">
+      </video>
+
+    <div class="container">
+        <form action="" class="calculator" name="calc">
+            <input type="text" class="value" name="txt" readonly>
+            <span class="num memory" data-tilt data-tilt-max="50" onclick="checkEroor();memory = 0; checkFontSize()">MC</span>
+            <span class="num memory" data-tilt data-tilt-max="50" onclick="checkEroor();document.calc.txt.value = memory; checkFontSize()">MR</span>
+            <span class="num memory" data-tilt data-tilt-max="50" onclick="checkEroor();
+            yes = eval(calc.txt.value);
+            if(yes == -Infinity || yes == Infinity || yes == undefined || isNaN(yes)){
+                document.calc.txt.value = 'Eroor';
+            }
+            memory += document.calc.txt.value
+            checkFontSize();">M+</span>
+            <span class="num memory" data-tilt data-tilt-max="50" onclick="checkEroor();
+            yes = eval(calc.txt.value);
+            if(yes == -Infinity || yes == Infinity || yes == undefined || isNaN(yes)){
+                document.calc.txt.value = 'Eroor';
+            }
+            memory -= document.calc.txt.value
+            checkFontSize();">M-</span>
+
+            <span class="num" onclick="checkEroor();if(!checkOperator()){document.calc.txt.value *= -1; checkFontSize()}" data-tilt data-tilt-max="50">±</span>
+            <span class="num" onclick="checkEroor();if(!checkOperator()){document.calc.txt.value += '%'; checkFontSize()}" data-tilt data-tilt-max="50">%</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value = document.calc.txt.value.slice(0, -1); checkFontSize()" data-tilt data-tilt-max="50">&lt;=</span>
+            <span class="num" onclick="checkEroor();if(!checkOperator()()){document.calc.txt.value = Math.sqrt(document.calc.txt.value); checkFontSize()}" data-tilt data-tilt-max="50">sqrt()</span>
+
+            <span class="num clear" onclick="calc.txt.value = ''; checkFontSize()" data-tilt data-tilt-max="50">C</span>
+            <span class="num" onclick="checkEroor();if(!checkOperator()){document.calc.txt.value += '/'; checkFontSize()}" data-tilt data-tilt-max="50">/</span>
+            <span class="num" onclick="checkEroor();
+            if(!isGwiazdka){
+                document.calc.txt.value += '*'; 
+                isGwiazdka = 1;
+            } else{
+                document.calc.txt.value = document.calc.txt.value.slice(0, -1) + '^';
+            };checkFontSize();
+            " data-tilt data-tilt-max="50">*</span>
+
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '7';checkFontSize()" data-tilt data-tilt-max="50">7</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '8';checkFontSize()" data-tilt data-tilt-max="50">8</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '9';checkFontSize()" data-tilt data-tilt-max="50">9</span>
+            <span class="num" onclick="checkEroor();if(!checkOperator()){document.calc.txt.value += '-';checkFontSize()}" data-tilt data-tilt-max="50">-</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '4';checkFontSize()" data-tilt data-tilt-max="50">4</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '5';checkFontSize()" data-tilt data-tilt-max="50">5</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '6';checkFontSize()" data-tilt data-tilt-max="50">6</span>
+            <span class="num plus" onclick="checkEroor();if(!checkOperator()){document.calc.txt.value += '+';checkFontSize()}" data-tilt data-tilt-max="50">+</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '1';checkFontSize()" data-tilt data-tilt-max="50">1</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '2';checkFontSize()" data-tilt data-tilt-max="50">2</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '3';checkFontSize()" data-tilt data-tilt-max="50">3</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '0';checkFontSize()" data-tilt data-tilt-max="50">0</span>
+            <span class="num" onclick="checkEroor();if(!checkOperator()){document.calc.txt.value += '.';checkFontSize()}" data-tilt data-tilt-max="50">.</span>
+            <span class="num" onclick="checkEroor();document.calc.txt.value += '00';checkFontSize()" data-tilt data-tilt-max="50">00</span>
+            <span class="num equal" onclick="
+            if(document.querySelector('.value').value != ''){
+                
+            let nuh = calc.txt.value;
+            if(findLastOperation(document.querySelector('.value')) == 0){
+                nuh = calc.txt.value + findLastOperation(document.querySelector('.history').firstChild.firstChild)
+            }
+            for(let i = 0; i < nuh.length - 1; i++){
+                if(nuh[i] == '^'){
+                    nuh = nuh.slice(0, i) + '**' + nuh.substring(i + 1)
+                }else if(nuh[i] == '%'){
+                    nuh = nuh.slice(0, i) + '*1/100' + nuh.substring(i + 1)
+                }
+            }
+            yes = eval(nuh);
+            if(yes == -Infinity || yes == Infinity || yes == undefined || isNaN(yes)){
+                document.calc.txt.value = 'Eroor';
+            }else{
+                document.calc.txt.value = yes;
+                const newdiv = document.createElement('span');
+            const newerdiv = document.createElement('span');
+            const deleter = document.createElement('div');
+            newerdiv.innerText = nuh + ' = ' + yes;
+            newerdiv.value = nuh + ' = ' + yes;
+            newerdiv.style.fontSize = `${document.querySelector('.value').style.fontSize.slice(0, -2) / 2}px`;
+            newdiv.classList.add('historyElement');
+            document.querySelector('.history').insertBefore(newdiv, document.querySelector('.history').firstChild)
+            newdiv.appendChild(newerdiv);
+            deleter.classList.add('deleter');
+            newdiv.appendChild(deleter);
+            }
+            ;checkFontSize();
+            document.querySelectorAll('.deleter').forEach((e) => {
+                e.addEventListener('click', () => {
+                e.parentElement.remove()
+            });
+            
+})}
+            " data-tilt data-tilt-max="50">=</span>
+        </form>
+        <div class="history">
+
+        </div>
+    </div>
+    <p class="stop">zatrzymaj szawła</p>
+
+</body>
+</html>

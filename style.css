@@ -1,0 +1,181 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+:root{
+    --width: 400px;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #032020;
+    background-image: url(imges/tlo.png);
+    background-size: 40%;
+}
+
+.container{
+    position: relative;
+    background: rgba(255, 255, 255, 0.08);
+    overflow: hidden;
+    height: 843px;
+    border-radius: 6px;
+    z-index: 10;
+    backdrop-filter: blur(15px);
+    border-top: 3px solid rgba(255, 255, 255, 0.2);
+    border-left: 3px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 6pc 6pc 20pc rgba(0,0,0,0.3);
+    display: flex;
+    transition-duration: 1s;
+}
+
+.container .calculator{
+    position: relative;
+    display: grid;
+}
+
+.container .calculator .value{
+    grid-column: span 4;
+    height: 140px;
+    width: 400px;
+    text-align: right;
+    border: none;
+    outline: none;
+    font-size: 36px;
+    padding: 0.5em;
+    background: transparent;
+    color: white;
+    border-bottom: 3px solid rgba(255, 255, 255, 0.05);
+    border-right: 3px solid rgba(255, 255, 255, 0.05);
+}
+
+.num{
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    height: 100px;
+    width: 100px;
+    color: white;
+    font-weight: 400;
+    font-size: 2em;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    border-right: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.num:hover{
+    transition: 0.1s;
+    background: rgba(255, 255, 255, 0.8);
+    color: black;
+}
+
+.container .calculator .clear{
+    background: rgba(255, 255, 255, 0.05);
+    grid-column: span 2;
+    width: 200px;
+}
+
+.plus{
+    grid-row: span 2;
+    height: 200px;
+}
+
+.equal{
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.history{
+    width: 300px;
+    z-index: 5;
+    overflow-y: auto;
+    scrollbar-width: none;
+    overflow-x: hidden;
+}
+
+.historyElement{
+    font-size: 3em;
+    display: block;
+    width: fit-content;
+    max-width: 300px;
+    height: fit-content;
+    overflow: hidden;
+    padding: 5px;
+    color: white;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.5);
+    width: 100%;
+    position: relative;
+    transition-duration: 1s;
+    animation: appear 0.8s linear;
+}
+
+.historyElement:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: 2px solid rgba(255, 255, 255, 0.8);
+    border: none;
+}
+
+.historyElement:hover .deleter{
+    opacity: 0.5;
+}
+
+.deleter{
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 20px;
+    transition-duration: 1s;
+    background-color: rgb(213, 99, 0);
+    cursor: pointer;
+    z-index: 15;
+}
+
+.deleter:hover{
+    width: 100px;
+}
+
+/*szaweł*/
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.stop{
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 10px 10px;
+    padding: 10px;
+    font-size: 2em; 
+    z-index: 5;
+    cursor: pointer; 
+    color: white;
+	transition-duration: 1s;
+}
+
+.stop:hover{
+	background-color: rgba(255, 255, 255, 0.8);
+}
+/*szaweł*/
+
+
+@keyframes appear{
+    from{
+        opacity: 0;
+        z-index: 6;
+        transform: translateY(100px);
+    }to{
+        opacity: 1;
+        z-index: 0;
+        transform: translateX(0);
+    }
+}
