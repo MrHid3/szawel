@@ -24,7 +24,7 @@ document.querySelector(".stop").addEventListener('click', (e) => {
     video.playbackRate = 1;
 	document.querySelector(".stop").innerText = "zatrzymaj szawła";
   }else{
-    video.playbackRate = 0.001;
+    video.playbackRate = 0.00001;
 	document.querySelector(".stop").innerText = "puść szawła";
   }
 })
