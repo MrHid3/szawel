@@ -21,10 +21,10 @@ document.querySelectorAll(".num").forEach((e) => {
 document.querySelector(".stop").addEventListener('click', (e) => {
   let video = document.querySelector("#myVideo");
   if(video.paused){
-    video.playbackRate = 0.05;
+    video.playbackRate = 1;
 	document.querySelector(".stop").innerText = "zatrzymaj szawła";
   }else{
-    video.playbackRate = 0.05;
+    video.playbackRate = 0.001;
 	document.querySelector(".stop").innerText = "puść szawła";
   }
 })
